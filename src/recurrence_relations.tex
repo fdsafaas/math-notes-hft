@@ -1,0 +1,249 @@
+\chapter {Recurrence Relations}
+
+Loosely speaking, A relation for a quantity (like $T_n$) when defined in terms of the quantity itself (like $T_{n-1}$) constitutes a recurrence relation.
+
+In finding a closed-form expression for a quantity of interest (like $T_n$) we go through three stages:
+\begin{enumerate}
+    \item Look at small cases. This gives us insight into the problem and helps us
+in stages 2 and 3.
+    \item Find and prove a mathematical expression for the quantity of interest. This usually requires finding a recurrence relation.
+    \item Find and prove a closed form for our mathematical expression.
+\end{enumerate}
+
+Sadly nothing can be done for step 1 and 2. But for step 3, we'll discuss few methods.
+
+\section {Repertoire method}
+\begin{definition}[Repertoire] A list or supply of dramas, operas, pieces, or parts that a company or person is prepared to perform.
+\end{definition}
+The repertoire method is a tool to help with the intuitive step of figuring out a closed formula for a recurrence equation. The method works best with recurrences that are ``linear" in the sense that the solutions can be expressed as a sum of arbitrary parameters multiplied by functions of $n$.
+
+\subsection{Motivating example}
+Let $a_n=3$ and $b_n=5n^2+1$. Assuming we know the solutions $x_n$ and $y_n$ of the recurrences
+\begin{align*}
+x_0&=3&y_0&=1\\
+x_n&=3+x_{n-1},\quad n>0&y_n&=5n^2+1+y_{n-1},\quad n>0
+\end{align*}
+then we also know by linearity that the solution of the recurrence
+\begin{align*}
+z_0&=7\\
+z_n&=2n^2+7+z_{n-1}
+\end{align*}
+is
+\begin{align*}
+z_n=\frac{11}{5}x_n+\frac{2}{5}y_n
+\end{align*}
+We observe that in this case we have a repertoire of two solutions $x_n$ and $y_n$ which we can linearly combine in order to find the wanted solution $z_n$. But, we typically start with a recurrence $z_n$ without having a repertoire of proper candidates.
+
+\subsection{Finding solution}
+Let's assume we start with a recurrence
+\begin{align*}
+z_0&=7\\
+z_n&=2n^2+7+z_{n-1},\quad n>0\tag{1}
+\end{align*}
+So, if we try to solve this recurrence by the method of repertoire, we first generalise the recurrence and consider instead
+
+\begin{align*}
+\mathcal{Z}_0&=a_0\\
+\mathcal{Z}_n&=a_n+\mathcal{Z}_{n-1},\quad n>0
+\end{align*}
+
+Now it's time for some creative ideas which is typically the most challenging phase when using this method. We want to find a repertoire consisting of two members. One of them with $a_n=$ const. and the other with $a_n=$ square of n. In order to do so we have to guess some proper candidates for $\mathcal{Z}_n$ which provides us with the wanted $a_n$.
+
+So let's guess a first candidate. This is not too hard (in this case) since setting $\mathcal{Z}_n=n$ gives
+
+\begin{align*}
+a_0&=0\\
+n&=a_n+n-1\quad n>0
+\end{align*}
+
+and we find: $a_0=0$ and $a_n=1,n>0$.
+
+We get the first candidate, let's say $x_n$ with
+
+\begin{align*}
+x_0&=0\\
+x_n&=1+x_{n-1},\quad n>0\tag{2}
+\end{align*}
+
+We can similarly find a proper second candidate which provides us with $a_n=$ square of n by observing that typically the sum of k-th powers of natural numbers is something with a (k+1)-th power. So we guess $\mathcal{Z}_n=n^3$ which gives
+
+\begin{align*}
+a_0&=0\\
+n^3&=a_n+(n-1)^3\quad n>0
+\end{align*}
+
+and we find $a_0=0$ and $a_n=3n^2-3n+1,n>0$.
+
+We get the second candidate, let's say $y_n$ with
+
+\begin{align*}
+y_0&=0\\
+y_n&=3n^2-3n+1+y_{n-1},\quad n>0\tag{3}
+\end{align*}
+
+We observe that $y_n$ also contains a linear term in $n$ which is not wanted, since we need according to (1) $a_n=n^2+7$. So we extend our repertoire by introducing a third member which provides us with $a_n=$ linear term in n. Then we should be able to eliminate the linear term in n by a proper linear combination of the three members. We guess $\mathcal{Z}_n=n^2$ which gives
+\begin{align*}
+a_0&=0\\
+n^2&=a_n+(n-1)^2\quad n>0
+\end{align*}
+and we find $a_0=0$ and $a_n=2n-1,n>0$.
+
+So we get the third candidate, let's say $u_n$ with
+
+\begin{align*}
+u_0&=0\\
+u_n&=2n-1+u_{n-1},\quad n>0\tag{4}
+\end{align*}
+
+Let's have a look at the repertoire. Overview of the three candidates:
+$$
+\begin{array}{rlcr}
+\mathcal{Z}_n&&a_n&\\
+\hline\\
+x_n=&n\qquad&1&\qquad\qquad\text{acc. to }(2)\\
+y_n=&n^3\qquad&3n^2-3n+1&\qquad\qquad\text{acc. to }(3)\\
+u_n=&n^2\qquad&2n-1&\qquad\qquad\text{acc. to }(4)\\
+\end{array}
+$$
+We observe when using an appropriate linear combination
+\begin{align*}
+a_n&=2n^2+7\\
+&=\frac{2}{3}\left(3n^2-3n+1\right)+\left(2n-1\right)+\frac{22}{3}
+\end{align*}
+and we conclude
+\begin{align*}
+z_n&=\frac{22}{3}x_n+\frac{2}{3}y_n+u_n+c_0\\
+&=\frac{1}{3}n\left(2n^2+3n+22\right)+c_0
+\end{align*}
+
+Observe, that we have to determine a constant $c_0$ since we also have to properly respect the initial condition $z_0=7$. We do so by setting $c_0=7$ and so we finally get:
+$$z_n=\frac{1}{3}n\left(2n^2+3n+22\right)+7,\quad n\geq 0$$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Steps}
+In order to solve a recurrence of the form
+\begin{align*}
+x_n=f(n)+g(x_{n-1},x_{n-2},\ldots,x_0)\tag{5}
+\end{align*}
+\begin{itemize}
+    \item we identify building blocks $f_1(n),\ldots,f_k(n)$ of $f(n)$, so that they can be linearly combined in order to form $f(n)$
+    \begin{align*}
+    f(n)=\lambda_1 f_1(n)+\ldots+\lambda_k f_k(n)
+    \end{align*}
+    
+    \item then we consider the generalised representation of (5) by substituting $f(n)$ with $a_n$.
+    \begin{align*}
+    \mathcal{Z}_n=a_n+g(\mathcal{Z}_{n-1},\mathcal{Z}_{n-2},\ldots,\mathcal{Z}_0)
+    \end{align*}
+    
+    \item and solve the simpler recurrences
+    \begin{align*}
+    x_n^{(l)}=f_l(n)+g(x_{n-1},x_{n-2},\ldots,x_0)\quad 1 \leq l \leq k
+    \end{align*}
+    by proper guessing of $x_n^{(l)}$ in order to get $f_l(n)$.
+    
+    \item The solutions $x_n^{(l)}$ with $1\leq l \leq k$ form the repertoire of the method in order to solve $x_n$.
+    
+    \item Determine the linear combination 
+    $$f(n)=\lambda_1 f_1(n)+\ldots+\lambda_k f_k(n)$$
+    
+    \item and deduce the solution
+    $$x_n=\lambda_1 x_n^{(1)}+\ldots+\lambda_k x_n^{(k)}+c_0$$
+    
+    \item Finally determine $c_0$ according to initial conditions
+\end{itemize}
+\begin{remark} There may be more than one initial condition which are to determine. It may be necessary to extend the repertoire in order to remove unwanted terms which additionally occur during the calculation of the $x_n^{(l)}$.
+\end{remark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{More examples}
+\subsubsection{Josephus Solution}
+Generalised Josephus equations are
+\begin{align*}
+    f(1) & = \alpha \\
+    f(2n) &= 2f(n)+ \beta \\
+    f(2n+1) &= 2f(n)+ \gamma 
+\end{align*}
+Therefore we can write 
+$$f(n)=A(n)\alpha+B(n)\beta+C(n)\gamma$$
+
+Using $f(n)=1$
+\begin{align*}
+    1 &= \alpha \\
+    1 &= 2+\beta \\
+    1 &= 2+\gamma
+\end{align*}
+Therefore $(\alpha,\beta,\gamma)=(1,-1,-1)$.
+
+Using $f(n)=n$, we get
+\begin{align*}
+    1 &=\alpha \\
+    2n &= 2n+\beta \\
+    2n+1&= 2n+\gamma
+\end{align*}
+Therefore $(\alpha,\beta,\gamma)=(1,0,1)$.
+
+\emph{Reverse.} Let's consider $(\alpha,\beta,\gamma)=(1,0,0)$. Therefore $f(n)=A(n)$, we get
+\begin{align*}
+    A(1) &= 1\\
+    A(2n)&=2A(n) \\
+    A(2n+1)&=2A(n)
+\end{align*}
+Therefore $A(2^m+l)=2^m, 0 \le l < 2^m$. Combining all three relations, we get
+\begin{align*}
+    A(n)-B(n)-C(n) &= 1 \\
+    A(n)+C(n) &=n\\
+    A(n) &= 2^m, \text{where} \; n=2^m+l, 0 \le l < 2^m
+\end{align*}
+Giving us $f(n) = 2^m \alpha + (2^m-1-l) \beta + l \gamma, \, n=2^m+l, \, 0\le l< 2^m$.
+
+\subsubsection{Summation Recurrence}
+Suppose that we have to evaluate $\sum_{k=0}^{n}(a+bk)$. Assuming $\alpha=\beta=a, \gamma=b$, we get
+\begin{align*}
+    R_0 &= \alpha \\
+    R_n &= R_{n-1}+\beta+\gamma n, \quad n>0
+\end{align*}
+Therefore using different function for $R_n=A(n)\alpha +B(n)\beta+C(n)\gamma$ we get, $R_1=\alpha+\beta+\gamma, \, R_2=\alpha+2\beta+3\gamma$,
+\begin{center}
+    $$\begin{tabu}{|c|c|c|}\hline
+        R_n = 1 & R_n=n & R_n=n^2 \\
+        \hline
+        \alpha = 1 & \alpha = 0 & \alpha = 0 \\
+        \beta = 0  & \beta = 1 &  \beta = -1 \\
+        \gamma = 0 & \gamma = 0 & \gamma = 2 \\
+        \hline    
+    \end{tabu}$$
+\end{center}
+Thus we have, $A(n)=1, B(n)=n, C(n)=n(n+1)/2$. Since now we have closed form, it is easy to find the original summation.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reducing recurrence to a sum}
+Suppose that we have to find $T_n$ in
+\begin{align*}
+    a_nT_n &= b_nT_{n-1} + c_n \\
+\end{align*}
+We multiply both sides by a summation factor $s_n$
+\begin{align*}
+    s_na_nT_n &= s_nb_nT_{n-1} + s_nc_n
+\end{align*}
+Choose $s_n$ such that $s_nb_n=s_{n-1}a_{n-1}$. Therefore we have
+\begin{align*}
+    S_n &= s_na_nT_n \quad \text{(suppose)} \\
+    S_n &= S_{n-1} + s_nc_n \\
+    S_n &= \sum_{k=1}^{n}s_kc_k + s_0a_0T_0 \\
+    T_n &= \frac{1}{s_na_n}\left(s_1b_1T_0 + \sum_{k=1}^{n}s_kc_k \right)
+\end{align*}
+The trick to choose $s_n$ is unfolding its recurrence
+$$
+s_n = \frac{a_{n-1}a_{n-2}\dots a_{1}}{b_nb_{n-1}\dots b_{2}}
+$$
+\subsubsection{Example (from \cite{concrete-maths})}
+Try to find the $C_n$ in 
+\begin{align*}
+    C_0 &= 0 \\
+    C_n &= n+1 + \frac{2}{n} \sum_{k=0}^{n-1} C_k
+\end{align*}
+to be the answer (where $H_n$ is the $n^{th}$ harmonic number)
+\begin{align*}
+    nC_n &= (n+1)C_{n-1}+2n \quad n>0, \quad \text{(hint)} \\
+    C_n &= 2(n+1)H_n - 2n
+\end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Solving Linear Homogeneous Recurrence Relations}

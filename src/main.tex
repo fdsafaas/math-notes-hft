@@ -1,0 +1,90 @@
+\documentclass[letterpaper,12pt]{report}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{amsthm}
+\usepackage{tabu}
+\newtheorem*{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\usepackage{caption}
+\usepackage{graphicx} % takes care of graphics
+\usepackage{tikz}
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\hypersetup{
+	colorlinks=false,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+\usepackage{amsmath,amssymb}
+\DeclareMathOperator{\E}{\textbf{E}}
+\DeclareMathOperator{\var}{\text{var}}
+\usepackage[T1]{fontenc}
+
+%++++++++++++++++++++++++++++++++++++++++
+ 
+\begin{document}
+
+\title{Mathematics for Computer Science}
+\author{jojo}
+\date{June 30, 2020}
+\maketitle
+
+\newpage
+\vspace*{8cm}
+\begin{center}
+	\large \emph{
+		To Aliza Joshi,\linebreak 
+		who loved me when I myself couldn't,\linebreak
+		Without her this wouldn't exist.}
+\end{center}
+
+\tableofcontents
+
+\part{Basics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter {Mathematical Induction}
+It's simpler to prove recurrence relations using mathematical induction.
+
+Mathematical induction is a general way to prove that some statement about the integer $n$ is true for all $n > n_0$. 
+\begin{enumerate}
+    \item First we prove the statement when $n$ has its smallest value, $n_0$; this is called the basis.
+    \item Then we prove the statement for $n > n_0$, assuming that it has already been proved for all values in $ [n_0, n - 1]$, this is called the induction. Such a proof gives infinitely many results with only a finite amount of work. 
+\end{enumerate}
+
+\textit{Mathematical induction proves that we can climb as high as we like on a ladder, by proving that we can climb onto the bottom rung (the basis) and that from each rung we can climb up to the next one (the induction).}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{recurrence_relations}
+\input{sums}
+\part {Number Theory}
+\part {Combinatorics}
+\part {Probability}
+\include{probability_models}
+\include{random_variable}
+\include{general_random_variables}
+\include{advanced_topics_random_variable}
+\include{bernoulli_poisson}
+\include{markov_chains}
+\part {Geometry}
+\part {Linear Algebra}
+\include{linear_algebra/introduction}
+
+
+
+% ----------------ADDING IMAGES -------------
+%\begin{figure}[!h]
+%    \centering
+%    \includegraphics[width=.8\textwidth]{}
+%    \caption{}
+%\end{figure}
+
+\bibliography{cite} 
+\bibliographystyle{unsrt}
+\end{document}

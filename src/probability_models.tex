@@ -1,0 +1,134 @@
+\chapter{Sample Space and Probability}
+Our main objective of this section is to develop the art of describing un­certainty in terms of probabilistic models, as  well as the skill of probabilistic reasoning. The first step, which is the subject of this chapter, is to describe the generic structure of such models and their basic properties. The models we consider assign probabilities to collections (sets) of possible outcomes.
+
+\section{Probabilistic Models}
+
+A probabilistic model is a mathematical description of an uncertain situation. It's elements are:
+
+\begin{enumerate}
+    \item \textbf{Sample space:} The set of all possible outcomes.
+    \item \textbf{Probability law:} It assign to a set $A$ of possible outcomes (also called an \textbf{event}) a non-negative number $\Pr(A)$ called as the probability of $A$. It encodes our belief of the likelihood of the event. It must satisfy properties described below.
+\end{enumerate}
+
+\subsection{Terminologies}
+
+\begin{itemize}
+    \item Every probability model involves an underlying process called the experiment.
+    \item An experiment produces exactly one of the several possible outcomes.
+    \item The set of \textit{all} possible outcomes is called sample space. The outcomes in this set are mutually exclusive and collectively exhaustive.
+    \item A subset of sample space (collection of possible outcomes) is called an event.
+\end{itemize}
+
+\subsection{Probability Laws}
+The probability law assigns to  every event $A$, a number $\Pr(A)$, called the probability of $A$, satisfying the following axioms.
+
+\begin{enumerate}
+    \item \textbf{Non-negativity:} $\Pr(A)\ge 0$ for every $A$.
+    \item \textbf{Additivity:} If $A$ and $B$ are two disjoint events then the probability of their union satisfies $\Pr(A \cup B)=\Pr(A)+\Pr(B)$.
+    \item \textbf{Normalization:} $\Pr(\Omega)=1$
+    \item \textbf{Discrete Probability Law:} If the sample space consists of a finite number of possible outcomes, then the probability law is specified by the  probabilities of the events that consist of a single element.  In particular, the probability of any event $\{s_1, s_2, \dots, s_n\}$ is the sum of the probabilities of its elements:
+    \[ \Pr(\{s_1, s_2, \dots, s_n\}) = \Pr(\{s_1\}) + \dots + \Pr(\{s_n \}) \]
+\end{enumerate}
+
+\subsection{Models and Reality}
+The framework of probability theory can be  used to  analyze uncertainty in  a wide variety of physical contexts. Typically, this involves two distinct stages. 
+\begin{enumerate}
+    \item \textit{(Connect real world to mathematics)} We  construct a probabilistic model by specifying a prob­ability  law on a suitably defined  sample space. There are no hard rules to guide this step, other than  the  requirement that the probability law con­form to the three axioms. Reasonable people may disagree on which model best represents reality. In many cases, one may even want to use a some­what "incorrect"  model, if it is simpler than  the "correct" one or allows for tractable calculations. This is consistent with common practice in science where the choice of model is a tradeoff between accuracy and simplicity/tractability.
+    \item \textit{(Working with model)} We now work with the fully specified probabilistic model and deduce the probabilities of the interesting events. This step is regulated by the rules of logic and all conceivable questions have precise answers. Sometimes it would be difficult to carry out the calculations but there's no room for ambiguity.
+\end{enumerate}
+
+\section{Conditional Probability}
+Way to reason about outcome of an experiment based on partial information. In more precise terms, given an experiment, a corresponding sample space, and a probability law, suppose that we know  that the outcome is within some given event $B$. We wish to quantify the likelihood that  the outcome also belongs to some other  given event $A$. We thus  seek to construct a  new probability law that takes into account the available knowledge: a probability law that for any event $A$, specifies conditional probability of $A$ given $B$, denoted by $\Pr(A|B)$.
+
+\[\boxed{\Pr(A|B)=\frac{\Pr(A \cap B)}{\Pr(B)} }\]
+
+\subsection{Conditional Probabilities Specify a Probability Law}
+\begin{enumerate}
+    \item Non-negativity is clear.
+    \item Additivity: Suppose $A_1$ and $A_2$ are two disjoint events.
+            \[\Pr(A_1 \cup A_2|B)=\frac{\Pr(A_1 \cap B)\cup \Pr(A_2 \cap B)}{\Pr(B)}=\frac{\Pr(A_1 \cap B)+\Pr(A_2\cap B)}{\Pr(B)}=\Pr(A_1|B)+\Pr(A_2|B)\]
+    \item Normalization: \[\Pr(\Omega | B)=\frac{\Pr(\Omega \cup B)}{\Pr(B)}=\frac{\Pr(B)}{\Pr(B)}=1\]
+\end{enumerate}
+
+\subsection{Properties of Conditional Probability}
+\begin{itemize}
+    \item The conditional probabilities specifies a new (conditional) probability law on the same sample space $\Omega$. In particular, all the probability laws remains valid for conditional probability laws.
+    \item Conditional probabilities can also be viewed as a probability law on a new universe $B$, because all of the conditional probability is concentrated on $B$.
+\end{itemize}
+
+\subsection{Using Conditional Probability for Modeling}
+When constructing probabilistic models for experiments that have a sequential character, it is often natural and convenient to first specify conditional prob­abilities and then use them to determine unconditional probabilities.
+
+Remember the radar and the aeroplane detection example.
+
+Rules for calculating probabilities in conjunction with a tree-based sequential description of an experiment are:
+
+\begin{enumerate}
+    \item Set up the tree so that an event of interest is associated with a leaf. We view the occurrence of the event as a sequence of steps, namely, the traversals of the branches along the path from root to the leaf.
+    \item We record the conditional probabilities associated with the branches of the tree.
+    \item We obtain the probability of a leaf by multiplying the probabilities recorded along the corresponding path of the tree.
+\end{enumerate}
+\subsubsection{Multiplication Rule}
+We use the following rule to find the probability of a leaf by multiplying the probabilities along the edges.
+\[\boxed{\Pr(\cap_{i=1}^{n}A_i)=\Pr(A_1)\Pr(A_2|A_1)\Pr(A_3|A_2\cap A_1)\cdots \Pr(A_n|\cap_{i=1}^{n-1}A_i)}\]
+
+\subsubsection{Example}
+There are 4 graduate students and 12 undergraduate students to be divided into groups of 4 with 4 students each. Find the probability that each group has a graduate student.
+
+Answer: First place the first graduate student then sequentially place other graduate students in a different group than the previously assigned groups of graduate students. Thus multiplication rule can be used.
+\[\frac{16}{16} \times \frac{12}{15} \times \frac{8}{14} \times \frac{4}{13} \]
+
+\section{Total Probability and Bayes' Rule}
+Let $A_1,\dots,A_n$ be disjoint events that form a partition of the sample space (any outcome belongs to exactly one of the event $A_1,\dots,A_n$). Then for any event $B$,
+\begin{align*}
+    \Pr(B) &= \Pr(A_1 \cap B) + \cdots + \Pr(A_n \cap B)  \\
+     &=  \Pr(A_1)\Pr(B|A_1) + \cdots + \Pr(A_n)\Pr(B|A_n)
+\end{align*}
+
+Probability of $B$ can also be visualized as the weighted average of the partitions.
+
+\subsection{Inference and Bayes' Rule}
+
+\subsubsection{Bayes' Rule}
+Let $A_1,\dots,A_n$ be disjoint events that form a partition of the sample space. Then for any event $B, \; \Pr(B)>0$, we have,
+
+\begin{align*}
+    \Pr(A_i|B) &= \frac{\Pr(A_i)\Pr(B|A_i)}{\Pr(B)} \\
+             &= \frac{\Pr(A_i)\Pr(B|A_i)}{\Pr(A_1)\Pr(B|A_1) + \cdots + \Pr(A_n)\Pr(B|A_n)}
+\end{align*}
+
+This equation is used for cause-effect models. Assume that for every cause we have the probability of the effect. This corresponds to the cause to effect direction. 
+\[\text{Cause} \iff \text{Effect}\]
+
+Given that the effect is observed, what is the probability that it is caused by a specific cause. This is the effect to cause direction and also called as inference.
+
+\section{Independence}
+$\Pr(A|B)$ captures the partial information that event $B$ provides about $A$. If $B$ does not provide any information about $A$, then 
+\[\Pr(A|B) = \Pr(A), \quad \quad \Pr(B)>0\]
+The above definition requires that $\Pr(B)>0$ which is not general, so instead the following definition is generally used
+\[\boxed{\Pr(A \cap B)  =\Pr(A)\Pr(B)}\]
+We say that $A$ and $B$ are independent.
+
+\subsection{Conditional Independence}
+Since conditional probabilities are no different than "normal" probabilities as they also form a legitimate probability law we can condition on an event with a minor change in the formula.
+Given an event $C$, two events $A$, $B$ are conditionally independent if,
+\[ \boxed{\Pr(A \cap B|C)=\Pr(A|C)\Pr(B|C)}\]
+or
+\[\Pr(A |B \cap C)=\Pr(A|B)\]
+
+In second equation, this relation states that if $C$ is known to have occurred, the additional knowledge that $B$ also occurred does not change the probability of $A$.
+
+Interestingly, independence of two events $A$ and $B$ with respect to  the unconditional probability law, does not imply conditional independence, and vice versa.
+
+\subsection{Independence of Several Events}
+
+We say that the events $A_1, \dots, A_n$, are independent if
+
+\[\boxed{\Pr\left(\bigcap_{i \in S} A_i\right)=\prod_{i \in S}\Pr(A_i), \quad \text{for every subset S of} \; \{1, 2, \dots, n\} }\]
+
+Important remarks:
+\begin{itemize}
+    \item Pairwise independence does not imply Independence.
+    \item The equality $\Pr(A_1 \cap A_2 \cap A_3)=\Pr(A_1)\Pr(A_2)\Pr(A_3)$ is not enough for Independence.
+\end{itemize}
+

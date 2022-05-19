@@ -1,0 +1,24 @@
+\chapter{Sums}
+Discussion on the art of manipulating sums.
+
+\section{Manipulation of Sums}
+\subsection{Perturbation Method}
+This method allows us to evaluate sums in closed form and starts by knocking of first and last terms in a sum and trying to co-relate the new sum.
+
+\subsubsection{Example}
+Suppose that $S_n = \sum_{0 \le k \le n}k\,2^k$. Now adding last term to the sum, we get
+\begin{align*}
+S_n + (n+1)2^{n+1} &= \sum_{0\le k \le n}k\,2^k + (n+1)2^{n+1} \\
+    &= 02^0 + \sum_{1 \le k \le n+1}k\,2^k \quad \text{(knock first term)}\\
+    &= \sum_{1 \le k+1 \le n+1} (k+1)2^{k+1} \\
+    &= 2 \left(2^{n+2}-2 + \sum_{0\le k \le n} k2^k \right) \\
+    &= 2 \left(2^{n+2}-2+S_n \right)\\
+\end{align*}
+Finally we get $S_n = (n-1)2^{n+1}+2$.
+
+\subsection{Differentiate both sides}
+Useful for summations like $\sum kx^k$,
+\begin{align*}
+    \sum_{k=0}^n kx^k &= x \frac{d}{dx}\left(\sum_{k=0}^nx^k\right) \\
+    &= x \frac{d}{dx}\left(\frac{1-x^{k+1}}{1-x}\right)
+\end{align*}
