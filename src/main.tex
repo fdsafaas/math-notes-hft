@@ -3,6 +3,7 @@
 \usepackage{amsmath}  % improve math presentation
 \usepackage{amsthm}
 \usepackage{tabu}
+\usepackage{mdframed}
 \newtheorem*{theorem}{Theorem}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
@@ -65,13 +66,14 @@ Mathematical induction is a general way to prove that some statement about the i
 \input{sums}
 \part {Number Theory}
 \part {Combinatorics}
+\include{combinatorics/basic_principles}
 \part {Probability}
-\include{probability_models}
-\include{random_variable}
-\include{general_random_variables}
-\include{advanced_topics_random_variable}
-\include{bernoulli_poisson}
-\include{markov_chains}
+\include{probability/probability_models}
+\include{probability/random_variable}
+\include{probability/general_random_variables}
+\include{probability/advanced_topics_random_variable}
+\include{probability/bernoulli_poisson}
+\include{probability/markov_chains}
 \part {Geometry}
 \part {Linear Algebra}
 \include{linear_algebra/introduction}

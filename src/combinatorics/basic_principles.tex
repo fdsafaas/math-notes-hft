@@ -1,0 +1,61 @@
+\chapter{Combinatorial Analysis}
+
+\section{Basic principle of counting}
+
+\begin{mdframed}
+  If $r$ experiments that are to be performed are such that the first one may result in any of $n_1$ possible outcomes; and if, for each of these $n_1$ possible outcomes, there are $n_2$ possible outcomes of the second experiment; and if, for each of the possible outcomes of the first two experiments, there are $n_3$ possible outcomes of the third experiment; and if $\ldots$, then there is a total of $n_1 \cdot n2 \cdots n_r$ possible outcomes of the $r$ experiments.
+\end{mdframed}
+
+\begin{example}
+  How many different 7-place license plates are possible if the first 3 places are to be occupied by letters and the final 4 by numbers?
+
+  By the generalized version of the basic principle, the answer is $26^3 \cdot 10^4 = 175,760,000$
+\end{example}
+
+\begin{example}
+  How many functions defined on $n$ points are possible if each functional value is either 0 or 1?
+  
+  Let the points be $1, 2, \ldots, n$. Since $f(i)$ must be either 0 or 1, it follows that there are $2^n$ possible functions.
+\end{example}
+
+\begin{example}
+  A class in probability theory consists of 6 men and 4 women. An examination is given, and the students are ranked according to their performance. Assume that no two students obtain the same score.
+
+  \begin{itemize}
+    \item How many different rankings are possible? \hfill{($10!$)}
+    \item If the men are ranked just among themselves and the women just among themselves, how many different rankings are possible? \hfill{($6! \cdot 4!$)}
+  \end{itemize}
+\end{example}
+
+\section{Permutations}
+\begin{mdframed}
+  There are $\frac{n!}{n_1! n_2! \cdots n_r!}$
+  different permutations of $n$ objects, of which $n_1$ are alike, $n_2$ are alike, \dots, $n_r$ are alike.
+\end{mdframed}
+
+\section{Combinations}
+We are often interested in determining the number of different groups of $r$ objects that could be formed from a total of $n$ objects. For instance, how many different
+groups of 3 could be selected from the 5 items A, B, C, D, and E?
+
+\begin{mdframed}
+  For $0 \le r \le n$, we define
+  \[\binom{n}{r} = \frac{n!}{(n-r)! r!}\]
+  which represents the number of possible combinations of $n$ objects taken $r$ at a time.
+\end{mdframed}
+
+A useful convention is to define $\binom{n}{r} = 0$ when $r>n$ or $r<0$.
+
+\begin{example}
+  From a group of 5 women and 7 men, how many different committees consisting of 2 women and 3 men can be formed? \hfill{$\binom{5}{2}\binom{7}{3}$}
+  
+  What if 2 of the men are feuding and refuse to
+  serve on the together? \hfill{$\left(\binom{7}{3}-\binom{7-2}{1}\right)\binom{5}{2}$}
+\end{example}
+
+A useful combinatorial identity, known as Pascal's identity, is
+\[\binom{n}{r} = \binom{n-1}{r-1} + \binom{n-1}{r}\]
+
+This can be proved analytically or by following combinatorial argument: Consider group of $n$ ordered objects and out of which $r$ object have to be selected. Suppose object 1 is chosen then out of $n-1$ objects $r-1$ more objects have to be chosen, if object 1 is not chosen then out of $n-1$ all $r$ have to be chosen.
+
+The values $\binom{n}{r}$ are also called as binomial coefficients because:
+\[ (x+y)^n = \sum_{k=0}^{n} \binom{n}{k}x^k y^{(n-k)}\]
