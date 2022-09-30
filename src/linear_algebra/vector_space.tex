@@ -1,0 +1,136 @@
+\chapter{Vector Space}
+
+\section{Introduction}
+
+A vector space is a set $V$ along with an addition and a scalar multiplication on $V$ such that the following properties hold:
+\begin{itemize}
+  \item Commutativity: $u + v = v + u$  for all $u,v \in V$
+  \item Associativity: $(u+v) + w=u+(v+w)$ and $(ab)v=a(bv)$ for all $u,v,w \in V$ and $a, b \in \mathbb{R}$
+  \item Additive identity: $\exists 0 \in V$ such that $v+0 = v$ for all $v \in V$
+  \item Additive inverse: $\forall v \in V$, $\exists w \in V$ such that $v + w = 0$
+  \item Multiplicative identity: $1v = v$ for all $v \in V$
+  \item Distributive: $a(u+v)=au+ av$ and $(a+b)v=av+bv$ for all $a,b \in \mathbb{R}$ and $u,v \in V$
+\end{itemize}
+
+In general, a vector space is an abstract entity whose elements might be lists, functions, or weird objects.
+
+\begin{example}[Is $F^S$ a vector space?]
+  If $S$ is a set, then $F^S$ denotes the set of functions from $S$ to $F$.
+  For $f,g \in F^S$ , the sum $f + g \in F^S$ is the function defined by
+  \[
+    (f+g)(x) = f(x) + g(x)
+  \]
+  for all $x \in S$. For $\lambda \in F, x\in S$, the product $\lambda f \in F^S$ is the function defined by
+  \[
+    (\lambda f)(x) = \lambda f(x)
+  \].
+
+  The additive identity of $F^S$ is the function $0 : S \to F$ defined by $0(x) = 0$. Additive inverse of $f$ is the function $(-f)(x)=-f(x)$
+\end{example}
+
+\subsection{Subspace}
+A subset $U$ of $V$ is called a subspace of $V$ if $U$ is also a vector space (using the same addition and scalar multiplication as on $V$).
+
+\subsubsection{Conditions for a subspace}
+A subset $U$ of $V$ is a subspace of $V$ if and only if $U$ satisfies the following three conditions:
+
+\begin{itemize}
+  \item additive identity: $0 \in U$
+  \item closed under addition: $u, w \in U \implies u+w\in U$
+  \item closed under scalar multiplication: $a \in F$ and  $u \in U \implies au \in U$.
+\end{itemize}
+
+\subsubsection{Sum of subspaces is the smallest containing subspace}
+Sums of subspaces in the theory of vector spaces are analogous to unions of subsets in set theory. Given two subspaces of a vector space, the smallest subspace containing them is their sum. Analogously, given two subsets of a set, the smallest subset containing them is their union.
+
+Suppose $U_1, \dots, U_m$ are subspaces of $V$. Then $U_1 + \cdots + U_m$ is the smallest subspace of $V$ containing $U_1, \dots, U_m$
+
+\textbf{Proof} Its easy to see that $0 \in U_1 + \cdots + U_m$ and that $U_1 + \cdots + U_m$ is closed under addition and scalar multiplication and therefore is a subspace.
+
+Every subspace of $V$ containing $U_1, \dots, U_m$ must contain $U_1 + \cdots + U_m$ because subspaces must contain finite sums of their elements. \qed
+
+\subsection{Direct Sums}
+Suppose $U_1, \dots, U_m$ are subspaces of $V$.
+\begin{itemize}
+  \item The sum $U_1 + \cdots + U_m$ is called a direct sum if each element of $U_1 + \cdots + U_m$ can be written in only one way as a sum $u_1 + \cdots + u_m$, where each $u_j$ is in $U_j$.
+  \item If $U_1 + \cdots + U_m$ is a direct sum then it can be written as $U_1 \oplus \cdots \oplus  U_m$ to indicate that its a direct sum
+\end{itemize}
+
+Sums of subspaces are analogous to unions of subsets. Similarly, direct sums of subspaces are analogous to disjoint unions of subsets. No two subspaces of a vector space can be disjoint, because both contain 0. So  disjointness is replaced, at least in the case of two subspaces, with the requirement that the intersection equals \{0\}.
+
+\subsubsection{Condition for a direct sum}
+Suppose $U_1, \ldots, U_m$ are subspaces of $V$. Then  $U_1 + \cdots + U_m$ is a direct sum if and only if the only way to write $0$ is $\sum u_j = 0$ where $u_j = 0$.
+
+\subsubsection{Direct sum of two subspaces}
+Suppose $U$ and $W$ are subspaces of $V$. Then $U + W$ is a direct sum iff $U \cap  W = \{0\}$.
+
+\section{Finite dimensional vector space}
+A vector space is called finite-dimensional if some list of vectors in it spans the space.
+
+\section{Linear Independence}
+\begin{definition}[Linear independence]
+  A list $v_1, \ldots, v_m$ of vectors in $V$ is called \textbf{linearly independent} if the only choice of $a_1, \ldots, a_m \in F$ that makes $a_1v_1 +\cdots+a_mv_m=0$ is $a 1 = \cdots = a_m = 0$.
+\end{definition}
+
+
+The empty list () is also declared to be linearly independent.
+
+The reasoning above shows that $v_1, \ldots, v_m$ is linearly independent iff each vector in $span(v_1,\ldots,v_m)$ has only one representation as a linear combination.
+
+\begin{definition}[Linear dependence]
+  A list of vectors in $V$ is linearly dependent if there exist $a_1, \ldots, a_m \in F$, not all 0, such that $a_1v_1 +\cdots+a_mv_m=0$.
+\end{definition}
+Given a linearly dependent list of vectors, if one of the vectors is in the span of the previous ones we can throw out that vector without changing the span of the original list.
+
+\begin{theorem}[Length of linearly independent list $\le$ length of spanning list]
+  In a finite-dimensional vector space, the length of every linearly independent list of vectors is less than or equal to the length of every spanning list of vectors.
+\end{theorem}
+
+\section{Basis}
+\begin{definition}[Basis]
+  A basis of $V$ is a list of vectors in $V$ that is linearly independent and spans $V$.
+\end{definition}
+\begin{itemize}
+  \item Every spanning list in a vector space can be reduced to a basis of the vector space.
+  \item Every finite-dimensional vector space has a basis.
+  \item \textbf{Linearly independent list extends to a basis}: Every linearly independent list of vectors in a finite-dimensional vector space can be extended to a basis of the vector space.
+  \item \textbf{Every subspace of $V$ is part of a direct sum equal to $V$}: Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$. Then there is a subspace $W$ of $V$ such that $V = U \oplus W$.
+\end{itemize}
+
+\subsection{Criterion for basis}
+A list $v_1, \ldots, v_n$ of vectors in $V$ is a basis of $V$ iff every $v \in V$ can be written uniquely in the form
+\[
+  v = a_1v_1 + \cdots + a_nv_n
+\]
+where $a_1,\ldots,a_n \in F$.
+
+\section{Dimension}
+\begin{theorem}[Basis length does not depend on basis]
+  Any two bases of a finite-dimensional vector space have the same length.
+\end{theorem}
+
+\begin{definition}[Dimension]
+  The dimension of a finite-dimensional vector space is the length of any basis of the vector space.
+\end{definition}
+
+\subsubsection{Properties}
+\begin{itemize}
+  \item The dimension of finite dimensional $V$ is denoted by dim $V$.
+  \item If $V$ is finite-dimensional and $U$ is a subspace of $V$, then dim $U \le$ dim $V$.
+\end{itemize}
+
+To check that a list of vectors in $V$ is a basis of $V$, we must, according to the definition, show that the list in question satisfies two properties: it must be linearly independent and it must span $V$. If the list in question has the right length, then we need only check that it satisfies one of the two required properties.
+
+\begin{theorem}[Linearly independent list of the right length is a basis]
+  Suppose $V$ is finite-dimensional. Then every linearly independent list of vectors in $V$ with length dim $V$ is a basis of $V$.
+\end{theorem}
+
+\begin{theorem}[Spanning list of the right length is a basis]
+  Suppose $V$ is finite-dimensional. Then every spanning list of vectors in $V$ with length dim $V$ is a basis of $V$.
+\end{theorem}
+
+\subsection{Dimension of a sum}
+If $U$ and $V$ are subspaces of a finite-dimensional vector space, then
+\[
+  \text{dim}(U+V) = \text{dim } U + \text{dim } V - \text{dim} (U \cap V)
+\]

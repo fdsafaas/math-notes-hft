@@ -34,3 +34,7 @@ I have done my best to add all citations and their correct sources. Please conta
 Dedication page for Aliza Joshi must stay because I would've probably killed myself years ago if it weren't for Aliza. Kindness and love goes a long way and should be rewarded in print and not redacted.
 
 Do whatever the f**k you want with everything else but I provide no gaurantee or have no liability or anything that can affect me.
+
+# Helpful Resources
+
+1. [MIT OCW - TOPICS IN MATHEMATICS WITH APPLICATIONS IN FINANCE (2013)](https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013)

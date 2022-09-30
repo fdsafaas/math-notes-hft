@@ -2,22 +2,35 @@
 
 The heart of linear algebra is in two operations-both with vectors.
 \begin{enumerate}
-  \item add vectors to get $\textbf v + \textbf w$
-  \item multiply them by numbers $c$ and $d$ to get $c \textbf v$ and $d \textbf w$
+	\item add vectors to get $\textbf v + \textbf w$
+	\item multiply them by numbers $c$ and $d$ to get $c \textbf v$ and $d \textbf w$
 \end{enumerate}
 Combining those two operations gives the \textbf{linear combination} $c\textbf v + d \textbf w$.
 
 \section{Linear Combinations}
 
-Take all linear combinations of $\textbf u$, or $\textbf u$ and $\textbf v$, or $\textbf u$, $\textbf v$, $\textbf w$. In three dimensions, those combinations typically fill a line, then a plane, then the whole space $\mathbb{R}^3$.
+A linear combination of a list $v_i$ of vectors in $V$ is a vector of the form $\sum a_i v_i$ where $a_i \in \mathbb{R}$ which is also called as $span(v_1,\ldots,v_n)$.
+
+The span of the empty list of vectors is defined to be $\{0\}$.
+
+The span of a list of vectors is the smallest subspace containing all the vectors in the list.
 
 \subsection{Combination of colums}
 A matrix times a vector can also be seen as a linear combination of the columns of the matrix.
 
 \begin{align*}
-  A &= \begin{bmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{bmatrix} \\
-  X &= \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \\
-  AX &= x_1 \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix} 
-     + x_2 \begin{bmatrix} 0 \\ 1 \\ -1 \end{bmatrix}
-     + x_3 \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+	A  & = \begin{bmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{bmatrix}     \\
+	X  & = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}     \\
+	AX & = x_1 \begin{bmatrix} 1 \\ -1 \\ 0 \end{bmatrix}
+	+ x_2 \begin{bmatrix} 0 \\ 1 \\ -1 \end{bmatrix}
+	+ x_3 \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+\end{align*}
+
+\subsection{Combination of rows}
+A vector times a matrix also be seen as a linear combination of the rows of the matrix.
+
+\begin{align*}
+	X^TA & = x_1 \begin{bmatrix} 1 & 0 & 0 \end{bmatrix}
+	+ x_2 \begin{bmatrix} -1 & 1 & 0 \end{bmatrix}
+	+ x_3 \begin{bmatrix} 0 & -1 & 1 \end{bmatrix}
 \end{align*}
